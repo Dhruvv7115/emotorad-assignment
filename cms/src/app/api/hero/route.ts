@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { heroSection } from "@/db/schema";
 import { db } from "@/index";
 
-export async function GET(req: NextRequest, res: NextResponse) {
+export async function GET(req: NextRequest) {
 	try {
 		const [heroData] = await db.select().from(heroSection);
 		if (!heroData) {
