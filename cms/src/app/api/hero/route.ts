@@ -4,14 +4,14 @@ import { db } from "@/index";
 
 export async function GET(req: NextRequest, res: NextResponse) {
 	try {
-		const heroData = await db.select().from(heroSection);
+		const [heroData] = await db.select().from(heroSection);
 		if (!heroData) {
 			return NextResponse.json(
 				{ error: "Hero section not found" },
 				{ status: 404 },
 			);
 		}
-		return NextResponse.json(heroData[0]);
+		return NextResponse.json(heroData);
 	} catch (error) {
 		console.error("Error fetching hero section:", error);
 		return NextResponse.json(
@@ -29,7 +29,10 @@ export async function PUT(req: NextRequest) {
 
 		if (!apiKey || apiKey !== expectedKey) {
 			return NextResponse.json(
-				{ error: "Unauthorized. Only the CRM application can update the hero section." },
+				{
+					error:
+						"Unauthorized. Only the CRM application can update the hero section.",
+				},
 				{ status: 401 },
 			);
 		}
@@ -59,6 +62,16 @@ export async function PUT(req: NextRequest) {
 					updatedAt: new Date(),
 				},
 			});
+		console.log(
+			`calling revalidate api at ${process.env.LANDING_URL}/api/revalidate with secret : ${process.env.REVALIDATE_SECRET}`,
+		);
+		const res = await fetch(`${process.env.LANDING_URL}/api/revalidate`, {
+			method: "POST",
+			headers: {
+				"x-secret": process.env.REVALIDATE_SECRET!,
+			},
+		});
+		console.log("revalidate response : ", res);
 		return NextResponse.json(heroData);
 	} catch (error) {
 		console.error("Error updating hero section:", error);

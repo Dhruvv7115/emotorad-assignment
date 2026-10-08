@@ -1,10 +1,9 @@
 import { cacheLife, cacheTag } from "next/cache";
-import Image from "next/image";
 import Link from "next/link";
 
 type Hero = {
 	title: string;
-	imageUrl: string;
+	imgSrc: string;
 	subtitle?: string;
 	btnText?: string;
 	btnLink?: string;
@@ -12,7 +11,7 @@ type Hero = {
 
 const FALLBACK: Hero = {
 	title: "Welcome",
-	imageUrl: "https://images.unsplash.com/photo-1554629947-334ff61d85dc?q=80&w=1336&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+	imgSrc: "https://images.unsplash.com/photo-1554629947-334ff61d85dc?q=80&w=1336&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
 };
 
 async function getHero(): Promise<Hero> {
@@ -40,10 +39,9 @@ export default async function Home() {
 
 	return (
 		<main className="relative text-white min-h-screen w-full overflow-hidden bg-neutral-950">
-			<Image
+			<img
 				src={
-					hero.imageUrl ??
-					"https://images.unsplash.com/photo-1554629947-334ff61d85dc?q=80&w=1336&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+					hero.imgSrc
 				}
 				width={2000}
 				height={2000}
