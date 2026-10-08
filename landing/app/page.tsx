@@ -10,8 +10,8 @@ type Hero = {
 };
 
 const FALLBACK: Hero = {
-	title: "Welcome",
-	imgSrc: "https://images.unsplash.com/photo-1554629947-334ff61d85dc?q=80&w=1336&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+	title: "Welcome to Emotorad!",
+	imgSrc: "/fallback.avif",
 };
 
 async function getHero(): Promise<Hero> {
@@ -35,18 +35,14 @@ export default async function Home() {
 		hero = FALLBACK;
 	}
 
-	console.log(hero);
-
 	return (
 		<main className="relative text-white min-h-screen w-full overflow-hidden bg-neutral-950">
 			<img
-				src={
-					hero.imgSrc
-				}
+				src={hero.imgSrc}
 				width={2000}
 				height={2000}
 				alt={hero.title}
-				className="absolute inset-0 h-full w-full object-cover"
+				className="absolute inset-0 h-full w-full object-cover opacity-100 mask-b-from-50% mask-b-to-90%"
 			/>
 
 			<section className="relative flex min-h-screen items-end px-6 pb-16 sm:px-12 sm:pb-24">
@@ -60,7 +56,7 @@ export default async function Home() {
 							href={hero.btnLink}
 							className="inline-block rounded-md text-base font-medium text-white"
 						>
-							<button className="bg-blue-500 ring-blue-500 ring-2 shadow-[inset_1px_1px_0px_0px_rgba(255,255,255,0.2),inset_-1px_-1px_0px_0px_rgba(255,255,255,0.2)] rounded-md px-4 py-2">
+							<button className="flex cursor-pointer items-center justify-center rounded-xl px-4 py-2 transition-all duration-200 active:scale-98 bg-linear-to-b from-blue-500 to-blue-600 text-white shadow-[0px_0px_10px_0px_rgba(255,255,255,0.2)_inset] ring ring-white/20 ring-inset ring-offset-2 ring-offset-blue-600 hover:shadow-[0px_0px_20px_0px_rgba(255,255,255,0.4)_inset] hover:ring-white/30">
 								{hero.btnText}
 							</button>
 						</Link>
