@@ -11,7 +11,7 @@ export async function GET(req: NextRequest, res: NextResponse) {
 				{ status: 404 },
 			);
 		}
-		return NextResponse.json(heroData);
+		return NextResponse.json(heroData[0]);
 	} catch (error) {
 		console.error("Error fetching hero section:", error);
 		return NextResponse.json(
