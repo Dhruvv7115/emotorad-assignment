@@ -62,16 +62,14 @@ export async function PUT(req: NextRequest) {
 					updatedAt: new Date(),
 				},
 			});
-		console.log(
-			`calling revalidate api at ${process.env.LANDING_URL}/api/revalidate with secret : ${process.env.REVALIDATE_SECRET}`,
-		);
+
 		const res = await fetch(`${process.env.LANDING_URL}/api/revalidate`, {
 			method: "POST",
 			headers: {
 				"x-secret": process.env.REVALIDATE_SECRET!,
 			},
 		});
-		console.log("revalidate response : ", res);
+	
 		return NextResponse.json(heroData);
 	} catch (error) {
 		console.error("Error updating hero section:", error);

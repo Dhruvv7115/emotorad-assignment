@@ -24,14 +24,11 @@ async function getHero(): Promise<Hero> {
 	return res.json();
 }
 
-// export const revalidate = 60
 export default async function Home() {
 	let hero: Hero;
 	try {
 		hero = await getHero();
 	} catch {
-		// Errors thrown inside "use cache" are not cached, so a CMS outage
-		// never gets stuck in the cache. Show the fallback for this request only.
 		hero = FALLBACK;
 	}
 
