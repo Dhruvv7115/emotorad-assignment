@@ -1,7 +1,7 @@
 import { integer, pgTable, timestamp, varchar } from "drizzle-orm/pg-core";
 
 export const heroSection = pgTable("hero_section", {
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  id: integer().primaryKey(),
   title: varchar({ length: 255 }).notNull(),
   subtitle: varchar({ length: 255 }).notNull(),
   imgSrc: varchar({ length: 255 }).notNull(),
