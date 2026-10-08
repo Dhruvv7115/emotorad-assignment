@@ -68,3 +68,9 @@ Each user will trigger an api call even though the content is same for all the u
    - Edits show up on the next refresh or two, not days later.
    - Visitors always get a fast, cached page.
 
+
+
+### What could be improved 
+- right now anyone who visits the cms can edit the hero section details which should be restricted more to admins only.
+- the webhook is public right now so anyone can trigger a revalidation which can cause issues, it should be restricted more to the cms only.
+- i haven't used s3 or any cloud storage instead gave the option to add link to the hero image instead to save time.
